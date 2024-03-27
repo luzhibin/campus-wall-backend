@@ -68,4 +68,11 @@ public class UserEntity implements Serializable {
 	@ApiModelProperty("更新时间")
 	@TableField("update_time")
 	private String updateTime;
+
+	/**
+	 * 更新时间
+	 */
+	@ApiModelProperty("用户头像")
+	@TableField("avatar")
+	private String avatar;
 }

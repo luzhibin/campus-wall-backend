@@ -10,7 +10,7 @@ server:
     connection-timeout: 5000ms
   port: 8080
   servlet:
-    context-path: /sqx_fast
+    context-path: /
 
 spring:
   main:
@@ -52,7 +52,7 @@ spring:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
       ##测试环境
-      url: jdbc:mysql://localhost:10153/campus-wall?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=CTT
+      url: jdbc:mysql://localhost:3306/campus-wall?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=CTT
       username: root
       password: root
       initial-size: 10

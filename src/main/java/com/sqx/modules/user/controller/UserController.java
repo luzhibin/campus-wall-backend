@@ -36,10 +36,18 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-    @ApiOperation("获取用户详细信息")
+    @ApiOperation("根据用户ID获取用户信息")
     @ResponseBody
     public Result selectUserById(@ApiParam("用户id") @PathVariable Long userId) {
         UserEntity userEntity = userService.getUserById(userId);
+        return Result.success().put("code", 200).put("data", userEntity);
+    }
+
+    @RequestMapping(value = "/{account}", method = RequestMethod.GET)
+    @ApiOperation("根据账号查询用户信息")
+    @ResponseBody
+    public Result selectUserById(@ApiParam("账号") @PathVariable String account) {
+        UserEntity userEntity = userService.getUserByAccount(account);
         return Result.success().put("code", 200).put("data", userEntity);
     }
 

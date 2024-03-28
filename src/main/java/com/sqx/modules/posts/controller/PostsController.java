@@ -23,4 +23,13 @@ public class PostsController {
         Result result = postsService.getPostsList();
         return result;
     }
+
+    @RequestMapping(value = "/getPostsListPage", method = RequestMethod.GET)
+    @ApiOperation("获取帖子列表(分页)")
+    @ResponseBody
+    public Result getPostsListPage(@RequestParam(required = true, value = "page") Integer page,
+                                   @RequestParam(required = true, value = "limit") Integer limit) {
+        Result result = postsService.getPostsListPage(page, limit);
+        return result;
+    }
 }

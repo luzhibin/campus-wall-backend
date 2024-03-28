@@ -17,7 +17,7 @@ public interface PostsService extends IService<PostsEntity> {
      * 查询帖子列表，带分页
      * @return
      */
-    PageUtils getPostsListPage();
+    Result getPostsListPage(Integer page, Integer limit);
 
     /**
      * 根据帖子id获取帖子
@@ -27,14 +27,7 @@ public interface PostsService extends IService<PostsEntity> {
     Result getPostsById(Integer postsId);
 
     /**
-     * 根据用户id获取帖子
-     * @param userId
-     * @return
-     */
-    Result getPostsByUserId(Integer userId);
-
-    /**
-     * 根据用户账号获取帖子
+     * 根据用户账号获取帖子(分页)
      * @param account
      * @return
      */

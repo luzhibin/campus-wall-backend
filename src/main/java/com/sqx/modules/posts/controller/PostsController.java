@@ -65,4 +65,12 @@ public class PostsController {
         Result result = postsService.postLike(postLikeEntity);
         return result;
     }
+
+    @RequestMapping(value = "/queryLikeList", method = RequestMethod.GET)
+    @ApiOperation("根据帖子id查询点赞的用户列表")
+    @ResponseBody
+    public Result queryLikeList(@RequestParam(value = "postId", required = true) Integer postId) {
+        Result result = postsService.queryLikeList(postId);
+        return result;
+    }
 }

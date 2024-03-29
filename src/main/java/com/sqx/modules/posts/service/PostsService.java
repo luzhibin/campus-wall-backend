@@ -61,4 +61,11 @@ public interface PostsService extends IService<PostsEntity> {
      */
     Result postLike(PostLikeEntity postsLikeEntity);
 
+    /**
+     * 根据帖子id查询点赞的用户列表
+     * @param postId
+     * @return
+     */
+    Result queryLikeList(Integer postId);
+
 }

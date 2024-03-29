@@ -11,6 +11,7 @@ import com.sqx.modules.posts.dao.PostsDao;
 import com.sqx.modules.posts.entity.PostLikeEntity;
 import com.sqx.modules.posts.entity.PostsEntity;
 import com.sqx.modules.posts.service.PostsService;
+import com.sqx.modules.user.dao.UserDao;
 import com.sqx.modules.user.entity.UserEntity;
 import com.sqx.modules.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,6 +33,8 @@ public class PostsServiceImpl extends ServiceImpl<PostsDao, PostsEntity> impleme
     UserService userService;
     @Autowired
     PostLikeDao postsLikeDao;
+    @Autowired
+    UserDao userDao;
 
 
     @Override
@@ -108,5 +112,22 @@ public class PostsServiceImpl extends ServiceImpl<PostsDao, PostsEntity> impleme
 
         postsLikeDao.insert(postsLikeEntity);
         return Result.success().put("code", 200).put("data", "点赞帖子成功！");
+    }
+
+    @Override
+    public Result queryLikeList(Integer postId) {
+        QueryWrapper<PostLikeEntity> pleQueryWrapper = new QueryWrapper<>();
+        pleQueryWrapper.select("user_id").eq("post_id", postId);
+        List<PostLikeEntity> postLikeEntityList = postsLikeDao.selectList(pleQueryWrapper);
+        List<Integer> userIdList = new ArrayList<>();
+        for (PostLikeEntity postLikeEntity : postLikeEntityList){
+            System.out.println(postLikeEntity.toString());
+            System.out.println("=============================================");
+            userIdList.add(postLikeEntity.getUserId());
+        }
+        QueryWrapper<UserEntity> queryWrapper = new QueryWrapper<>();
+        queryWrapper.in("user_id", userIdList);
+        List<UserEntity> users = userDao.selectList(queryWrapper);
+        return Result.success().put("code", 200).put("data", users);
     }
 }

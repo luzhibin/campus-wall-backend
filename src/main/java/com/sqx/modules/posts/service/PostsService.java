@@ -1,8 +1,8 @@
 package com.sqx.modules.posts.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.sqx.common.utils.PageUtils;
 import com.sqx.common.utils.Result;
+import com.sqx.modules.posts.entity.PostLikeEntity;
 import com.sqx.modules.posts.entity.PostsEntity;
 
 public interface PostsService extends IService<PostsEntity> {
@@ -53,4 +53,12 @@ public interface PostsService extends IService<PostsEntity> {
      * @return
      */
     Result deletePost(PostsEntity postsEntity);
+
+    /**
+     * 帖子点赞
+     * @param postsLikeEntity
+     * @return
+     */
+    Result postLike(PostLikeEntity postsLikeEntity);
+
 }

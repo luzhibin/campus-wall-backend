@@ -15,23 +15,23 @@ import java.io.Serializable;
  */
 @Data
 @ApiModel("用户关联帖子点赞")
-@TableName("posts_like")
-public class PostsLikeEntity implements Serializable {
+@TableName("post_like")
+public class PostLikeEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
      * 帖子主键id
      */
     @ApiModelProperty("用户关联帖子点赞 关联id")
-    @TableId(type = IdType.AUTO,value = "posts_user_id")
-    private Integer postsUserId;
+    @TableId(type = IdType.AUTO,value = "post_user_id")
+    private Integer postUserId;
 
     /**
      * 帖子id
      */
     @ApiModelProperty("帖子id")
-    @TableField("posts_id")
-    private Integer postsId;
+    @TableField("post_id")
+    private Integer postId;
 
     /**
      * 用户id

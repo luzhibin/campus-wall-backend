@@ -6,14 +6,18 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sqx.common.utils.PageUtils;
 import com.sqx.common.utils.Result;
+import com.sqx.modules.posts.dao.PostLikeDao;
 import com.sqx.modules.posts.dao.PostsDao;
+import com.sqx.modules.posts.entity.PostLikeEntity;
 import com.sqx.modules.posts.entity.PostsEntity;
+import com.sqx.modules.posts.entity.PostsLikeEntity;
 import com.sqx.modules.posts.service.PostsService;
 import com.sqx.modules.user.entity.UserEntity;
 import com.sqx.modules.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -26,6 +30,9 @@ public class PostsServiceImpl extends ServiceImpl<PostsDao, PostsEntity> impleme
     PostsDao postsDao;
     @Autowired
     UserService userService;
+    @Autowired
+    PostLikeDao postsLikeDao;
+
 
     @Override
     public Result getPostList() {
@@ -86,5 +93,21 @@ public class PostsServiceImpl extends ServiceImpl<PostsDao, PostsEntity> impleme
         postsEntity.setIsDelete(true);
         postsDao.updateById(postsEntity);
         return Result.success().put("code", 200).put("data", "删除帖子成功！");
+    }
+
+    @Override
+    @Transactional
+    public Result postLike(PostLikeEntity postsLikeEntity) {
+        Integer postId = postsLikeEntity.getPostId();
+        PostsEntity postsEntity = postsDao.selectById(postId);
+        if (postsEntity.getLikeCount() == null){
+            postsEntity.setLikeCount(1);
+        }else {
+            postsEntity.setLikeCount(postsEntity.getLikeCount() + 1);
+        }
+        postsDao.updateById(postsEntity);
+
+        postsLikeDao.insert(postsLikeEntity);
+        return Result.success().put("code", 200).put("data", "点赞帖子成功！");
     }
 }

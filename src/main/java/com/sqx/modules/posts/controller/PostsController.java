@@ -2,8 +2,8 @@ package com.sqx.modules.posts.controller;
 
 import com.sqx.common.utils.Result;
 import com.sqx.modules.posts.entity.PostsEntity;
+import com.sqx.modules.posts.entity.PostsLikeEntity;
 import com.sqx.modules.posts.service.PostsService;
-import com.sqx.modules.user.entity.UserEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +55,14 @@ public class PostsController {
     @ResponseBody
     public Result deletePost(@RequestBody PostsEntity postsEntity) {
         Result result = postsService.deletePost(postsEntity);
+        return result;
+    }
+
+    @RequestMapping(value = "/postLike", method = RequestMethod.POST)
+    @ApiOperation("帖子点赞")
+    @ResponseBody
+    public Result postLike(@RequestBody PostsLikeEntity postsLikeEntity) {
+        Result result = postsService.deletePosts(postsEntity);
         return result;
     }
 }

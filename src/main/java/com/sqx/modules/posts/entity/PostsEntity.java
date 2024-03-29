@@ -25,7 +25,7 @@ public class PostsEntity implements Serializable {
      */
     @ApiModelProperty("帖子id")
     @TableId(type = IdType.AUTO,value = "posts_id")
-    private int postsId;
+    private Integer postsId;
 
 
     /**
@@ -33,7 +33,7 @@ public class PostsEntity implements Serializable {
      */
     @ApiModelProperty("用户id")
     @TableField("user_id")
-    private int userId;
+    private Integer userId;
 
     /**
      *  帖子标题
@@ -97,5 +97,12 @@ public class PostsEntity implements Serializable {
     @ApiModelProperty("收藏数")
     @TableField("collect_count")
     private Integer collectCount;
+
+    /**
+     *  是否删除 1删除 0启用
+     */
+    @ApiModelProperty("是否删除")
+    @TableField("is_delete")
+    private Boolean isDelete;
 
 }

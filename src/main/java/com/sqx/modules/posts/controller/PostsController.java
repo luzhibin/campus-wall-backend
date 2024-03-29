@@ -3,7 +3,6 @@ package com.sqx.modules.posts.controller;
 import com.sqx.common.utils.Result;
 import com.sqx.modules.posts.entity.PostLikeEntity;
 import com.sqx.modules.posts.entity.PostsEntity;
-import com.sqx.modules.posts.entity.PostsLikeEntity;
 import com.sqx.modules.posts.service.PostsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

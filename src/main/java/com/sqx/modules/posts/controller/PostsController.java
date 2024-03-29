@@ -57,6 +57,4 @@ public class PostsController {
         Result result = postsService.deletePosts(postsEntity);
         return result;
     }
-
-
 }

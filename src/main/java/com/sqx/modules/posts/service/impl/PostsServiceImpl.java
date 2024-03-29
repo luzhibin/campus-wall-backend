@@ -28,7 +28,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsDao, PostsEntity> impleme
     UserService userService;
 
     @Override
-    public Result getPostsList() {
+    public Result getPostList() {
         QueryWrapper<PostsEntity> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("is_delete", 0).orderByAsc("create_time");
         List<PostsEntity> postsEntities = postsDao.selectList(queryWrapper);
@@ -36,7 +36,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsDao, PostsEntity> impleme
     }
 
     @Override
-    public Result getPostsListPage(Integer page, Integer limit) {
+    public Result getPostListPage(Integer page, Integer limit) {
         IPage<PostsEntity> iPage = new Page<>(page, limit);
         QueryWrapper<PostsEntity> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("is_delete", 0).orderByAsc("create_time");
@@ -63,7 +63,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsDao, PostsEntity> impleme
     }
 
     @Override
-    public Result insertPosts(PostsEntity postsEntity) {
+    public Result insertPost(PostsEntity postsEntity) {
         Date date = new Date();
         postsEntity.setCreateTime(date);
         postsEntity.setLikeCount(0);
@@ -74,14 +74,14 @@ public class PostsServiceImpl extends ServiceImpl<PostsDao, PostsEntity> impleme
     }
 
     @Override
-    public Result updatePosts(PostsEntity postsEntity) {
+    public Result updatePost(PostsEntity postsEntity) {
         postsEntity.setUpdateTime(new Date());
         postsDao.updateById(postsEntity);
         return Result.success().put("code", 200).put("data", "更新帖子成功！");
     }
 
     @Override
-    public Result deletePosts(PostsEntity postsEntity) {
+    public Result deletePost(PostsEntity postsEntity) {
         postsEntity.setUpdateTime(new Date());
         postsEntity.setIsDelete(true);
         postsDao.updateById(postsEntity);

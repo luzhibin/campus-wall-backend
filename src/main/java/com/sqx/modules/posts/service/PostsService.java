@@ -11,13 +11,13 @@ public interface PostsService extends IService<PostsEntity> {
      * 查询帖子列表，不分页
      * @return
      */
-    Result getPostsList();
+    Result getPostList();
 
     /**
      * 查询帖子列表，带分页
      * @return
      */
-    Result getPostsListPage(Integer page, Integer limit);
+    Result getPostListPage(Integer page, Integer limit);
 
     /**
      * 根据帖子id获取帖子
@@ -38,19 +38,19 @@ public interface PostsService extends IService<PostsEntity> {
      * @param postsEntity
      * @return
      */
-    Result insertPosts(PostsEntity postsEntity);
+    Result insertPost(PostsEntity postsEntity);
 
     /**
      * 更新帖子
      * @param postsEntity
      * @return
      */
-    Result updatePosts(PostsEntity postsEntity);
+    Result updatePost(PostsEntity postsEntity);
 
     /**
      * 删除帖子
      * @param postsEntity
      * @return
      */
-    Result deletePosts(PostsEntity postsEntity);
+    Result deletePost(PostsEntity postsEntity);
 }

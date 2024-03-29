@@ -17,44 +17,44 @@ public class PostsController {
     @Autowired
     PostsService postsService;
 
-    @RequestMapping(value = "/getPostsList", method = RequestMethod.GET)
+    @RequestMapping(value = "/getPostList", method = RequestMethod.GET)
     @ApiOperation("获取帖子列表")
     @ResponseBody
-    public Result getPostsList() {
-        Result result = postsService.getPostsList();
+    public Result getPostList() {
+        Result result = postsService.getPostList();
         return result;
     }
 
-    @RequestMapping(value = "/getPostsListPage", method = RequestMethod.GET)
+    @RequestMapping(value = "/getPostListPage", method = RequestMethod.GET)
     @ApiOperation("获取帖子列表(分页)")
     @ResponseBody
-    public Result getPostsListPage(@RequestParam(required = true, value = "page") Integer page,
+    public Result getPostListPage(@RequestParam(required = true, value = "page") Integer page,
                                    @RequestParam(required = true, value = "limit") Integer limit) {
-        Result result = postsService.getPostsListPage(page, limit);
+        Result result = postsService.getPostListPage(page, limit);
         return result;
     }
 
-    @RequestMapping(value = "/addPosts", method = RequestMethod.POST)
+    @RequestMapping(value = "/addPost", method = RequestMethod.POST)
     @ApiOperation("发帖")
     @ResponseBody
-    public Result addPosts(@RequestBody PostsEntity postsEntity) {
-        Result result = postsService.insertPosts(postsEntity);
+    public Result addPost(@RequestBody PostsEntity postsEntity) {
+        Result result = postsService.insertPost(postsEntity);
         return result;
     }
 
-    @RequestMapping(value = "/updatePosts", method = RequestMethod.POST)
+    @RequestMapping(value = "/updatePost", method = RequestMethod.POST)
     @ApiOperation("更新帖子")
     @ResponseBody
-    public Result updatePosts(@RequestBody PostsEntity postsEntity) {
-        Result result = postsService.updatePosts(postsEntity);
+    public Result updatePost(@RequestBody PostsEntity postsEntity) {
+        Result result = postsService.updatePost(postsEntity);
         return result;
     }
 
-    @RequestMapping(value = "/deletePosts", method = RequestMethod.POST)
+    @RequestMapping(value = "/deletePost", method = RequestMethod.POST)
     @ApiOperation("删除帖子")
     @ResponseBody
-    public Result deletePosts(@RequestBody PostsEntity postsEntity) {
-        Result result = postsService.deletePosts(postsEntity);
+    public Result deletePost(@RequestBody PostsEntity postsEntity) {
+        Result result = postsService.deletePost(postsEntity);
         return result;
     }
 }

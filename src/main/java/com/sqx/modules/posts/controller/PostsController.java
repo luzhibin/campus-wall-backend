@@ -1,6 +1,7 @@
 package com.sqx.modules.posts.controller;
 
 import com.sqx.common.utils.Result;
+import com.sqx.modules.posts.entity.PostLikeEntity;
 import com.sqx.modules.posts.entity.PostsEntity;
 import com.sqx.modules.posts.entity.PostsLikeEntity;
 import com.sqx.modules.posts.service.PostsService;
@@ -61,8 +62,8 @@ public class PostsController {
     @RequestMapping(value = "/postLike", method = RequestMethod.POST)
     @ApiOperation("帖子点赞")
     @ResponseBody
-    public Result postLike(@RequestBody PostsLikeEntity postsLikeEntity) {
-        Result result = postsService.deletePosts(postsEntity);
+    public Result postLike(@RequestBody PostLikeEntity postLikeEntity) {
+        Result result = postsService.postLike(postLikeEntity);
         return result;
     }
 }

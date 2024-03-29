@@ -10,7 +10,6 @@ import com.sqx.modules.posts.dao.PostLikeDao;
 import com.sqx.modules.posts.dao.PostsDao;
 import com.sqx.modules.posts.entity.PostLikeEntity;
 import com.sqx.modules.posts.entity.PostsEntity;
-import com.sqx.modules.posts.entity.PostsLikeEntity;
 import com.sqx.modules.posts.service.PostsService;
 import com.sqx.modules.user.entity.UserEntity;
 import com.sqx.modules.user.service.UserService;

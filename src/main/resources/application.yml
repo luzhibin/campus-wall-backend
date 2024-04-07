@@ -16,8 +16,8 @@ spring:
   main:
     allow-circular-references: true
   # 环境 dev|test|prod
-  profiles:
-    active: prod
+#  profiles:
+#    active: prod
   # jackson时间格式化
   jackson:
     time-zone: GMT+8
@@ -115,3 +115,6 @@ sqx:
     # token有效时长，7天，单位秒
     expire: 2592000
     header: token
+
+upload:
+  filePath: C:\Users\java\Desktop\新建文件夹

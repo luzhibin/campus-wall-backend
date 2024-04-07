@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sqx.common.utils.Result;
 import com.sqx.modules.app.utils.JwtUtils;
+import com.sqx.modules.sys.entity.SysUserEntity;
+import com.sqx.modules.sys.service.SysUserService;
+import com.sqx.modules.sys.service.SysUserTokenService;
 import com.sqx.modules.user.dao.UserDao;
 import com.sqx.modules.user.entity.UserEntity;
 import com.sqx.modules.user.service.UserService;
@@ -26,6 +29,10 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
     UserDao userDao;
     @Autowired
     private JwtUtils jwtUtils;
+    @Autowired
+    private SysUserService sysUserService;
+    @Autowired
+    private SysUserTokenService sysUserTokenService;
 
     @Override
     public Result insertUser(UserEntity userEntity) {
@@ -58,7 +65,9 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         user.setUpdateTime(sdf.format(new Date()));
         userDao.updateById(user);
-        return getResult(user);
+        Result r = sysUserTokenService.createToken(user.getUserId());
+        r.put("data", user);
+        return r;
     }
 
     @Override

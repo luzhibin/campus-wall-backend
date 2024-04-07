@@ -1,6 +1,7 @@
 package com.sqx.modules.posts.controller;
 
 import com.sqx.common.utils.Result;
+import com.sqx.modules.app.annotation.Login;
 import com.sqx.modules.posts.entity.PostLikeEntity;
 import com.sqx.modules.posts.entity.PostsEntity;
 import com.sqx.modules.posts.service.PostsService;
@@ -17,6 +18,7 @@ public class PostsController {
     @Autowired
     PostsService postsService;
 
+    @Login
     @RequestMapping(value = "/getPostList", method = RequestMethod.GET)
     @ApiOperation("获取帖子列表")
     @ResponseBody
@@ -25,6 +27,7 @@ public class PostsController {
         return result;
     }
 
+    @Login
     @RequestMapping(value = "/getPostListPage", method = RequestMethod.GET)
     @ApiOperation("获取帖子列表(分页)")
     @ResponseBody
@@ -34,6 +37,7 @@ public class PostsController {
         return result;
     }
 
+    @Login
     @RequestMapping(value = "/addPost", method = RequestMethod.POST)
     @ApiOperation("发帖")
     @ResponseBody
@@ -42,6 +46,7 @@ public class PostsController {
         return result;
     }
 
+    @Login
     @RequestMapping(value = "/updatePost", method = RequestMethod.POST)
     @ApiOperation("更新帖子")
     @ResponseBody
@@ -50,6 +55,7 @@ public class PostsController {
         return result;
     }
 
+    @Login
     @RequestMapping(value = "/deletePost", method = RequestMethod.POST)
     @ApiOperation("删除帖子")
     @ResponseBody
@@ -58,6 +64,7 @@ public class PostsController {
         return result;
     }
 
+    @Login
     @RequestMapping(value = "/postLike", method = RequestMethod.POST)
     @ApiOperation("帖子点赞")
     @ResponseBody
@@ -66,6 +73,7 @@ public class PostsController {
         return result;
     }
 
+    @Login
     @RequestMapping(value = "/queryLikeList", method = RequestMethod.GET)
     @ApiOperation("根据帖子id查询点赞的用户列表")
     @ResponseBody
@@ -73,4 +81,6 @@ public class PostsController {
         Result result = postsService.queryLikeList(postId);
         return result;
     }
+
+
 }

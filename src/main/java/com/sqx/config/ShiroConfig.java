@@ -43,44 +43,16 @@ public class ShiroConfig {
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/webjars/**", "anon");
         filterMap.put("/druid/**", "anon");
-
-        filterMap.put("/advert/list", "anon");
-        filterMap.put("/goods/recommend", "anon");
-        filterMap.put("/selfActivity/state", "anon");
-        filterMap.put("/goods/homeGoods", "anon");
-        filterMap.put("/goods/find", "anon");
-        filterMap.put("/goods/selectGoods", "anon");
-        filterMap.put("/selfActivity/list", "anon");
-        filterMap.put("/pay/**", "anon");
-        filterMap.put("/aliPay/**", "anon");
-        filterMap.put("/order/**", "anon");
-        filterMap.put("/pays/notifyPay", "anon");
-        filterMap.put("/selfGoodsBrand/find", "anon");
-        filterMap.put("/selfGoodsComment/list", "anon");
-        filterMap.put("/selfGoodsComment/count", "anon");
-        filterMap.put("/selfGoodsComment/findByOrderId", "anon");
-        filterMap.put("/selfGoodsComment/find", "anon");
-        filterMap.put("/goods/brandList", "anon");
-
-
-        filterMap.put("/app/wxPay/notifyJsApi", "anon");
-        filterMap.put("/app/wxPay/notifyMp", "anon");
-        filterMap.put("/app/wxPay/notify", "anon");
-        filterMap.put("/app/aliPay/notifyApp", "anon");
         filterMap.put("/app/**", "anon");
-        filterMap.put("/activity/**", "anon");
-        filterMap.put("/banner/**", "anon");
-        filterMap.put("/courseClassification/selectCourseClassification", "anon");
         filterMap.put("/sys/login", "anon");
+        filterMap.put("/user/userLogin", "anon");
+        filterMap.put("/user/userRegister", "anon");
         filterMap.put("/swagger/**", "anon");
         filterMap.put("/v2/api-docs", "anon");
         filterMap.put("/swagger-ui.html", "anon");
         filterMap.put("/swagger-resources/**", "anon");
-        filterMap.put("/captcha.jpg", "anon");
         filterMap.put("/chatSocket/**", "anon");
         filterMap.put("/websocket/**", "anon");
-        filterMap.put("/search/**", "anon");
-        filterMap.put("/alioss/**","anon");
         filterMap.put("/**", "oauth2");
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 

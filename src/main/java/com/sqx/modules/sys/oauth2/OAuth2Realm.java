@@ -3,6 +3,8 @@ package com.sqx.modules.sys.oauth2;
 import com.sqx.modules.sys.entity.SysUserEntity;
 import com.sqx.modules.sys.entity.SysUserTokenEntity;
 import com.sqx.modules.sys.service.ShiroService;
+import com.sqx.modules.user.entity.UserEntity;
+import com.sqx.modules.user.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -21,6 +23,8 @@ import java.util.Set;
 public class OAuth2Realm extends AuthorizingRealm {
     @Autowired
     private ShiroService shiroService;
+    @Autowired
+    private UserService userService;
 
     @Override
     public boolean supports(AuthenticationToken token) {
@@ -49,7 +53,8 @@ public class OAuth2Realm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String accessToken = (String) token.getPrincipal();
-
+        System.out.println("accessToken: ===========================");
+        System.out.println(accessToken);
         //根据accessToken，查询用户信息
         SysUserTokenEntity tokenEntity = shiroService.queryByToken(accessToken);
         //token失效
@@ -58,13 +63,10 @@ public class OAuth2Realm extends AuthorizingRealm {
         }
 
         //查询用户信息
-        SysUserEntity user = shiroService.queryUser(tokenEntity.getUserId());
-        //账号锁定
-        if(user.getStatus() == 0){
-            throw new LockedAccountException("账号已被锁定,请联系管理员");
-        }
+        UserEntity userEntity = userService.getUserById(tokenEntity.getUserId());
+        //SysUserEntity user = shiroService.queryUser(tokenEntity.getUserId());
 
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, accessToken, getName());
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(userEntity, accessToken, getName());
         return info;
     }
 }

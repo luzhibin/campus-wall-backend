@@ -17,7 +17,7 @@ public interface PostsService extends IService<PostsEntity> {
      * 查询帖子列表，带分页
      * @return
      */
-    Result getPostListPage(Integer page, Integer limit);
+    Result getPostListPage(String token, Integer page, Integer limit);
 
     /**
      * 根据帖子id获取帖子

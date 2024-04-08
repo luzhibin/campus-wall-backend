@@ -11,6 +11,8 @@ import com.sqx.modules.posts.dao.PostsDao;
 import com.sqx.modules.posts.entity.PostLikeEntity;
 import com.sqx.modules.posts.entity.PostsEntity;
 import com.sqx.modules.posts.service.PostsService;
+import com.sqx.modules.sys.entity.SysUserTokenEntity;
+import com.sqx.modules.sys.service.ShiroService;
 import com.sqx.modules.user.dao.UserDao;
 import com.sqx.modules.user.entity.UserEntity;
 import com.sqx.modules.user.service.UserService;
@@ -35,6 +37,8 @@ public class PostsServiceImpl extends ServiceImpl<PostsDao, PostsEntity> impleme
     PostLikeDao postsLikeDao;
     @Autowired
     UserDao userDao;
+    @Autowired
+    private ShiroService shiroService;
 
 
     @Override
@@ -46,11 +50,34 @@ public class PostsServiceImpl extends ServiceImpl<PostsDao, PostsEntity> impleme
     }
 
     @Override
-    public Result getPostListPage(Integer page, Integer limit) {
+    public Result getPostListPage(String token, Integer page, Integer limit) {
+        if (token == null || "".equals(token)){
+            return Result.success().put("code", 401);
+        }
+
+        //根据accessToken，查询用户信息
+        SysUserTokenEntity tokenEntity = shiroService.queryByToken(token);
+        //查询用户信息
+        UserEntity userEntity = userService.getUserById(tokenEntity.getUserId());
+
         IPage<PostsEntity> iPage = new Page<>(page, limit);
         QueryWrapper<PostsEntity> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("is_delete", 0).orderByAsc("create_time");
         IPage<PostsEntity> postsEntityIPage = postsDao.selectPage(iPage, queryWrapper);
+
+        // 获取数据
+        List<PostsEntity> records = postsEntityIPage.getRecords();
+        for(PostsEntity posts : records){
+            if (posts.getUserId() == userEntity.getUserId().intValue()) {
+                posts.setCanDel(true);
+            }else {
+                posts.setCanDel(false);
+            }
+        }
+
+        //将计算好的值存入list返回给Ipage
+        postsEntityIPage.setRecords(records);
+
         PageUtils result = new PageUtils(postsEntityIPage);
         return Result.success().put("code", 200).put("data", result);
     }

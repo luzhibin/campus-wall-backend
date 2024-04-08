@@ -2,11 +2,15 @@ package com.sqx.modules.posts.controller;
 
 import com.sqx.common.utils.Result;
 import com.sqx.modules.app.annotation.Login;
+import com.sqx.modules.app.annotation.LoginUser;
 import com.sqx.modules.posts.entity.PostLikeEntity;
 import com.sqx.modules.posts.entity.PostsEntity;
 import com.sqx.modules.posts.service.PostsService;
+import com.sqx.modules.user.entity.UserEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,9 +35,10 @@ public class PostsController {
     @RequestMapping(value = "/getPostListPage", method = RequestMethod.GET)
     @ApiOperation("获取帖子列表(分页)")
     @ResponseBody
-    public Result getPostListPage(@RequestParam(required = true, value = "page") Integer page,
-                                   @RequestParam(required = true, value = "limit") Integer limit) {
-        Result result = postsService.getPostListPage(page, limit);
+    public Result getPostListPage(@RequestHeader("token") String token,
+                                  @RequestParam(required = true, value = "page") Integer page,
+                                  @RequestParam(required = true, value = "limit") Integer limit) {
+        Result result = postsService.getPostListPage(token, page, limit);
         return result;
     }
 

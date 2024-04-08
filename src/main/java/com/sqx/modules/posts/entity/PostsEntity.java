@@ -105,4 +105,11 @@ public class PostsEntity implements Serializable {
     @TableField("is_delete")
     private Boolean isDelete;
 
+    /**
+     * 是否是发布者，发布者可以删除，则为1，不可删除0
+     */
+    @ApiModelProperty("是否可删除")
+    @TableField("can_del")
+    private Boolean canDel;
+
 }

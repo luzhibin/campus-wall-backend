@@ -75,11 +75,4 @@ public class UserEntity implements Serializable {
 	@ApiModelProperty("用户头像")
 	@TableField("avatar")
 	private String avatar;
-
-	/**
-	 * 是否是发布者，发布者可以删除，则为1，不可删除0
-	 */
-	@ApiModelProperty("是否是帖子发布者")
-	@TableField("can_del")
-	private Boolean canDel;
 }

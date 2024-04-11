@@ -12,19 +12,19 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**实体类
- * 用户关联帖子点赞
+ * 用户关联帖子收藏
  */
 @Data
-@ApiModel("用户关联帖子点赞")
-@TableName("post_like")
-public class PostLikeEntity implements Serializable {
+@ApiModel("用户关联帖子收藏")
+@TableName("post_collect")
+public class PostCollectEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 帖子主键id
      */
-    @ApiModelProperty("用户关联帖子点赞 关联id")
+    @ApiModelProperty("用户关联帖子收藏 关联id")
     @TableId(type = IdType.AUTO,value = "post_user_id")
     private Integer postUserId;
 
@@ -43,10 +43,10 @@ public class PostLikeEntity implements Serializable {
     private Integer userId;
 
     /**
-     * 点赞时间
+     * 收藏时间
      */
-    @ApiModelProperty("点赞时间")
-    @TableField("like_time")
-    private Date likeTime;
+    @ApiModelProperty("收藏时间")
+    @TableField("collect_time")
+    private Date collectTime;
 
 }

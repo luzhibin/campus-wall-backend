@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -36,8 +38,37 @@ public class PostsEntity implements Serializable {
     private Integer userId;
 
     /**
+     * 用户头像
+     */
+    @TableField(exist = false)
+    @JsonProperty("userPic")
+    private String userPic;
+
+    /**
+     * 用户名
+     */
+    @TableField(exist = false)
+    @JsonProperty("username")
+    private String username;
+
+    /**
+     * 性别
+     */
+    @TableField(exist = false)
+    @JsonProperty("sex")
+    private Integer sex;
+
+    /**
+     * 年龄
+     */
+    @TableField(exist = false)
+    @JsonProperty("age")
+    private Integer age;
+
+    /**
      *  帖子标题
      */
+    @JsonProperty("title")
     @ApiModelProperty("帖子标题")
     @TableField("title")
     private String title;
@@ -52,23 +83,33 @@ public class PostsEntity implements Serializable {
     /**
      *  图片1
      */
-    @ApiModelProperty("图片1")
+    @JsonIgnore
     @TableField("image1")
     private String image1;
 
     /**
      *  图片2
      */
-    @ApiModelProperty("图片2")
+    @JsonIgnore
     @TableField("image2")
     private String image2;
 
     /**
      *  图片3
      */
-    @ApiModelProperty("图片3")
+    @JsonIgnore
     @TableField("image3")
     private String image3;
+
+    @TableField(exist = false)
+    private String[] imageArray;
+
+    /**
+     *  封面图
+     */
+    @TableField("cover_pic")
+    @JsonProperty("coverPic")
+    private String coverPic;
 
     /**
      *  创建时间
@@ -83,6 +124,14 @@ public class PostsEntity implements Serializable {
     @ApiModelProperty("更新时间")
     @TableField("update_time")
     private Date updateTime;
+
+    /**
+     *  评论数
+     */
+    @ApiModelProperty("点赞数")
+    @TableField("comment_num")
+    @JsonProperty("commentNum")
+    private Integer commentNum;
 
     /**
      *  点赞数

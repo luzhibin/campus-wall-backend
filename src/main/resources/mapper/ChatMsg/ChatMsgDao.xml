@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sqx.modules.chat.dao.ChatMsgDao">
+
+    <select id="getMsgByTwoUserId" resultType="com.sqx.modules.chat.entity.ChatMsg">
+        select * from (
+            select t.* from chat_msg t where 1=1
+            and (t.send_userid = #{userId1} or t.send_userid = #{userId2})
+        ) t1
+        where 1 = 1
+        and (t1.recive_userid = #{userId1} or t1.recive_userid = #{userId2})
+        order by t1.sendtime asc
+    </select>
+
+
+</mapper>

@@ -41,7 +41,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
         queryWrapper.eq("account", account);
         Integer i = userDao.selectCount(queryWrapper);
         if (i > 0){
-            Result.success().put("code", 500).put("data", "该账号已注册！");
+            Result.success().put("code", 500).put("data", "该账号已存在！");
         }
         String hexPassword = DigestUtils.sha256Hex(userEntity.getPassword());
         userEntity.setPassword(hexPassword);

@@ -3,6 +3,7 @@ package com.sqx.modules.posts.controller;
 import com.sqx.common.utils.Result;
 import com.sqx.modules.app.annotation.Login;
 import com.sqx.modules.app.annotation.LoginUser;
+import com.sqx.modules.posts.entity.PostCollectEntity;
 import com.sqx.modules.posts.entity.PostLikeEntity;
 import com.sqx.modules.posts.entity.PostsEntity;
 import com.sqx.modules.posts.service.PostsService;
@@ -79,10 +80,28 @@ public class PostsController {
     }
 
     @Login
+    @RequestMapping(value = "/postCollect", method = RequestMethod.POST)
+    @ApiOperation("帖子收藏")
+    @ResponseBody
+    public Result postCollect(@RequestBody PostCollectEntity postCollectEntity) {
+        Result result = postsService.postCollect(postCollectEntity);
+        return result;
+    }
+
+    @Login
     @RequestMapping(value = "/queryLikeList", method = RequestMethod.GET)
     @ApiOperation("根据帖子id查询点赞的用户列表")
     @ResponseBody
     public Result queryLikeList(@RequestParam(value = "postId", required = true) Integer postId) {
+        Result result = postsService.queryLikeList(postId);
+        return result;
+    }
+
+    @Login
+    @RequestMapping(value = "/queryCollectList", method = RequestMethod.GET)
+    @ApiOperation("根据帖子id查询收藏帖子的用户列表")
+    @ResponseBody
+    public Result queryCollectList(@RequestParam(value = "postId", required = true) Integer postId) {
         Result result = postsService.queryLikeList(postId);
         return result;
     }

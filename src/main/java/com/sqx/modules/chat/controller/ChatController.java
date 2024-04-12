@@ -5,6 +5,7 @@ import com.sqx.modules.app.annotation.Login;
 import com.sqx.modules.chat.service.ChatMsgService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,9 +31,18 @@ public class ChatController {
     @ApiOperation("根据两个用户id获取两个用户之间的聊天记录")
     @ResponseBody
     public Result getMsgByTwoUserId(@RequestHeader("token") String token,
-                                    @RequestParam(required = true, value = "userId1") Integer userId1,
-                                    @RequestParam(required = true, value = "userId2") Integer userId2) {
+                                    @ApiParam(value = "发送者的用户id", required = true) @RequestParam(required = true, value = "sendUserid") Integer userId1,
+                                    @ApiParam(value = "接收者的用户id", required = true) @RequestParam(required = true, value = "reciveUserid") Integer userId2) {
         Result result = chatMsgService.getMsgByTwoUserId(userId1, userId2);
+        return result;
+    }
+
+    @Login
+    @RequestMapping(value = "/getLatestChatMsg", method = RequestMethod.GET)
+    @ApiOperation("获取当前用户最新的聊天信息")
+    @ResponseBody
+    public Result getLatestChatMsg(@ApiParam(value = "当前登录用户的用户id", required = true) @RequestParam(required = true, value = "userId") Integer userId) {
+        Result result = chatMsgService.getLatestChatMsg(userId);
         return result;
     }
 }

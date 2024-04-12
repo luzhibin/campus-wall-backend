@@ -14,14 +14,14 @@ import lombok.experimental.Accessors;
 import java.util.Date;
 
 @Data
-@ApiModel("聊天信息实体类")
+@ApiModel("聊天信息对象")
 @TableName("chat_msg")
 public class ChatMsg {
 
     /**
      * 消息主键id
      */
-    @ApiModelProperty("消息主键id，唯一约束")
+    @ApiModelProperty(value = "消息主键id，唯一约束, num类型", example = "1")
     @TableId(type = IdType.AUTO,value = "msg_id")
     private Integer msgId;
 
@@ -29,28 +29,28 @@ public class ChatMsg {
     /**
      * 发送者id
      */
-    @ApiModelProperty("发送者的用户id")
+    @ApiModelProperty(value = "发送者的用户id, num类型", example = "1")
     @TableField("send_userid")
     private String sendUserid;
 
     /**
      * 接收者id
      */
-    @ApiModelProperty("接收者的用户id")
+    @ApiModelProperty(value = "接收者的用户id, num类型", example = "1")
     @TableField("recive_userid")
     private String reciveUserid;
 
     /**
      * 发送内容
      */
-    @ApiModelProperty("发送内容")
+    @ApiModelProperty(value = "发送内容, string类型", example = "")
     @TableField("sendtext")
     private String sendtext;
 
     /**
      * 发送时间
      */
-    @ApiModelProperty("发送时间")
+    @ApiModelProperty("发送时间（可不传，后端自动根据当前时间生成）")
     @TableField("sendtime")
     private Date sendtime;
 

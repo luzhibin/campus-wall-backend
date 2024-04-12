@@ -105,6 +105,4 @@ public class PostsController {
         Result result = postsService.queryLikeList(postId);
         return result;
     }
-
-
 }

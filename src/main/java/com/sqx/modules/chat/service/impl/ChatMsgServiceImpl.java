@@ -2,6 +2,7 @@ package com.sqx.modules.chat.service.impl;
 
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -37,6 +38,14 @@ public class ChatMsgServiceImpl extends ServiceImpl<ChatMsgDao, ChatMsg> impleme
         List<ChatMsg> msgByTwoUserId = chatMsgDao.getMsgByTwoUserId(userId1, userId2);
 
         return Result.success().put("code", 200).put("data", msgByTwoUserId);
+    }
+
+    @Override
+    public Result getLatestChatMsg(Integer userId) {
+        QueryWrapper<ChatMsg> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("recive_userid", userId).orderByDesc("sendtime").last("limit 1");
+        ChatMsg chatMsg = chatMsgDao.selectOne(queryWrapper);
+        return Result.success().put("code", 200).put("data", chatMsg);
     }
 
 }

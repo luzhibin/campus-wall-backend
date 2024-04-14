@@ -4,8 +4,7 @@ import com.sqx.common.utils.Result;
 import com.sqx.modules.app.annotation.Login;
 import com.sqx.modules.comment.entity.CommentEntity;
 import com.sqx.modules.comment.service.CommentService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +29,7 @@ public class CommentController {
     @RequestMapping(value = "/addComment", method = RequestMethod.POST)
     @ApiOperation("添加帖子评论")
     @ResponseBody
-    public Result addComment(@RequestBody CommentEntity commentEntity) {
+    public Result addComment(@ApiParam(value = "参数为comment对象", required = true) @RequestBody CommentEntity commentEntity) {
         Result result = commentService.addComment(commentEntity);
         return result;
     }

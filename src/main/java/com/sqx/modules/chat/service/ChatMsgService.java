@@ -11,4 +11,6 @@ public interface ChatMsgService extends IService<ChatMsg> {
     Result getMsgByTwoUserId(Integer userId1, Integer userId2);
 
     Result getLatestChatMsg(Integer userId);
+
+    Result sendMsg(ChatMsg chatMsg);
 }

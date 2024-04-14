@@ -102,7 +102,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
         QueryWrapper<UserEntity> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("account", userEntity.getAccount());
         userDao.update(userEntity, queryWrapper);
-        return Result.success().put("code", 200).put("data", "用户信息修改成功！");
+        return Result.success().put("code", 200).put("data", userEntity);
     }
 
 }

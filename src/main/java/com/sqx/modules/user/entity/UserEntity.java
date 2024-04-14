@@ -23,21 +23,21 @@ public class UserEntity implements Serializable {
 	/**
 	 * 用户ID
 	 */
-	@ApiModelProperty("用户id")
+	@ApiModelProperty("用户id， number类型")
 	@TableId(type = IdType.AUTO,value = "user_id")
 	private Long userId;
 
 	/**
 	 * 用户名
 	 */
-	@ApiModelProperty("账号")
+	@ApiModelProperty("账号，string类型")
 	@TableField("account")
 	private String account;
 
 	/**
 	 * 密码
 	 */
-	@ApiModelProperty("密码")
+	@ApiModelProperty("密码， string类型")
 	@TableField("password")
 	private String password;
 
@@ -51,7 +51,7 @@ public class UserEntity implements Serializable {
 	/**
 	 * 年龄"
 	 */
-	@ApiModelProperty("年龄")
+	@ApiModelProperty("年龄， number类型")
 	@TableField("age")
 	private Integer age;
 
@@ -72,7 +72,7 @@ public class UserEntity implements Serializable {
 	/**
 	 * 更新时间
 	 */
-	@ApiModelProperty("用户头像")
+	@ApiModelProperty("用户头像，string类型")
 	@TableField("avatar")
 	private String avatar;
 }

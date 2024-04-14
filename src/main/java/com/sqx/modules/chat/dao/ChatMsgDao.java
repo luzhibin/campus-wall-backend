@@ -10,5 +10,7 @@ import java.util.List;
 @Mapper
 public interface ChatMsgDao extends BaseMapper<ChatMsg> {
 
+    List<ChatMsg> getMsgByUserId(@Param("userId") Integer userId);
+
     List<ChatMsg> getMsgByTwoUserId(@Param("userId1") Integer userId1, @Param("userId2") Integer userId2);
 }

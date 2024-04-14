@@ -24,35 +24,35 @@ public class CommentEntity implements Serializable {
     /**
      * 用户评论帖子的主键id
      */
-    @ApiModelProperty("用户评论帖子的主键id")
+    @ApiModelProperty(value = "主键id，添加评论时不用传这个参数，后端自动生成", example = "1")
     @TableId(type = IdType.AUTO,value = "comment_id")
     private Integer commentId;
 
     /**
      * 帖子id
      */
-    @ApiModelProperty("帖子id")
+    @ApiModelProperty(value = "帖子id,number类型", example = "1")
     @TableField("post_id")
     private Integer postId;
 
     /**
      * 该帖子用户的用户id
      */
-    @ApiModelProperty("该帖子用户的用户id")
+    @ApiModelProperty("该帖子用户的用户id,number类型")
     @TableField("user_id")
     private Integer userId;
 
     /**
      * 发送评论的用户id
      */
-    @ApiModelProperty("发送评论的用户id")
+    @ApiModelProperty("发送评论的用户id,number类型")
     @TableField("send_user_id")
     private Integer sendUserId;
 
     /**
      * 评论的内容
      */
-    @ApiModelProperty("评论的内容")
+    @ApiModelProperty("评论的内容, string类型")
     @TableField("comment_text")
     private Integer commentText;
 

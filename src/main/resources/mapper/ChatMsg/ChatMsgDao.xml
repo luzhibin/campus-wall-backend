@@ -3,6 +3,12 @@
 
 <mapper namespace="com.sqx.modules.chat.dao.ChatMsgDao">
 
+    <select id="getMsgByUserId" resultType="com.sqx.modules.chat.entity.ChatMsg">
+        select t.* from chat_msg t where 1=1
+        and (t.send_userid = #{userId} or t.recive_userid = #{userId})
+        order by t.sendtime asc
+    </select>
+
     <select id="getMsgByTwoUserId" resultType="com.sqx.modules.chat.entity.ChatMsg">
         select * from (
             select t.* from chat_msg t where 1=1

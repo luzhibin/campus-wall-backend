@@ -47,8 +47,8 @@ public class PostsController {
     @RequestMapping(value = "/addPost", method = RequestMethod.POST)
     @ApiOperation("发帖")
     @ResponseBody
-    public Result addPost(@RequestBody PostsEntity postsEntity) {
-        Result result = postsService.insertPost(postsEntity);
+    public Result addPost(@RequestHeader String token, @RequestBody PostsEntity postsEntity) {
+        Result result = postsService.insertPost(token, postsEntity);
         return result;
     }
 

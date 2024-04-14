@@ -166,7 +166,15 @@ public class PostsServiceImpl extends ServiceImpl<PostsDao, PostsEntity> impleme
     }
 
     @Override
-    public Result insertPost(PostsEntity postsEntity) {
+    public Result insertPost(String token, PostsEntity postsEntity) {
+        if (token == null || "".equals(token)){
+            return Result.success().put("code", 401);
+        }
+
+        //根据accessToken，查询用户信息
+        SysUserTokenEntity tokenEntity = shiroService.queryByToken(token);
+
+        postsEntity.setUserId(tokenEntity.getUserId().intValue());
         Date date = new Date();
         postsEntity.setCreateTime(date);
         postsEntity.setLikeCount(0);

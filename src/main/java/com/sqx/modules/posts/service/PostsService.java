@@ -39,7 +39,7 @@ public interface PostsService extends IService<PostsEntity> {
      * @param postsEntity
      * @return
      */
-    Result insertPost(PostsEntity postsEntity);
+    Result insertPost(String token, PostsEntity postsEntity);
 
     /**
      * 更新帖子
